@@ -1,18 +1,11 @@
-<DOCTYPE html>
-<html>
-    <head>
-        <title>Pythoning</title>
-    </head>
-    <body>
-        <header> 
-           <h1><a href="/">Sharing my little Python lightbulb moments</a></h1>
-        </header>
-        {% for post in posts %}
-        <article>
-            <h2><a href="">{{ post.title }}</a></h2>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <time>published: {{ post.published_date}}</time>
             <p> {{ post.text|linebreaksbr }} </p>
         </article>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
